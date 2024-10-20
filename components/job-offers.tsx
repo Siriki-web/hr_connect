@@ -9,16 +9,22 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import {
-    MapPinIcon, ClockIcon, BookmarkIcon, XIcon, InfoIcon, HomeIcon, UsersIcon, SlidersIcon,
-    SearchIcon, BriefcaseIcon, EyeIcon, BellIcon, LayoutGridIcon, ListIcon, ChevronLeft, ChevronRight, RotateCcwIcon, PenTool
+    MapPinIcon, ClockIcon, BookmarkIcon, XIcon, InfoIcon, HomeIcon, SlidersIcon,
+    SearchIcon, BriefcaseIcon, EyeIcon, BellIcon, LayoutGridIcon, ListIcon, ChevronLeft, ChevronRight, RotateCcwIcon, PenTool,
 } from 'lucide-react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
 import { useRouter } from 'next/navigation'
 
+// Update the Job type definition to include the sector property
+type Job = {
+    // ... other properties ...
+    sector: string; // Add this line
+    // ... other properties ...
+}
 
 export function JobOffersComponent() {
-	const router = useRouter();
+    const router = useRouter();
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
     const textVariants = [
         { text: "l'environnement qui fait du bien", bgColor: "bg-blue-200" },
@@ -117,22 +123,6 @@ export function JobOffersComponent() {
 
     return (
         <div className="flex flex-col min-h-screen bg-gray-100">
-            {/*<header className="bg-white shadow-sm">
-                <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-                    <Link href="/" className="flex items-center space-x-2">
-                        <BriefcaseIcon className="h-8 w-8 text-primary" />
-                        <span className="text-xl font-bold">TalentHub</span>
-                    </Link>
-                    <nav className="hidden md:flex space-x-4">
-                        <Link href="/" className="text-gray-600 hover:text-gray-900">Accueil</Link>
-                        <Link href="/job-offers" className="text-gray-600 hover:text-gray-900">Offres d&apos;emploi</Link>
-                        <Link href="/features" className="text-gray-600 hover:text-gray-900">Fonctionnalités</Link>
-                        <Link href="/pricing" className="text-gray-600 hover:text-gray-900">Tarifs</Link>
-                        <Link href="/contact" className="text-gray-600 hover:text-gray-900">Contact</Link>
-                    </nav>
-                    <Button variant="outline" className="rounded-none">Se connecter</Button>
-                </div>
-            </header>*/}
             <header className="bg-white shadow-md sticky top-0 z-50">
                 <div className="container mx-auto px-4 py-4 flex justify-between items-center">
                     {/* Logo and Brand */}
@@ -174,142 +164,142 @@ export function JobOffersComponent() {
                     </ul>
                 </nav>
             </header>
-
-
-            <div className="bg-gray py-8">
-                <div className="container mx-auto px-4">
-                    <h1 className="text-2xl font-bold text-center">
-                        Trouvez le job avec{' '}
-                        <span className="inline-block">
-                            <span className={`inline-block px-2 ${textVariants[currentTextIndex].bgColor}`}>
-                                {textVariants[currentTextIndex].text}
+            <div className="w-full bg-gradient-to-r from-[#00aaff] to-[#f0f4f8]">
+                <div className="py-8">
+                    <div className="container mx-auto px-4 text-center">
+                        <h1 className="text-[1.3rem] font-bold">
+                            Trouvez le job avec{' '}
+                            <span className="relative inline-block align-middle">
+                                <span
+                                    className={`inline-block px-2 py-1 rounded-none transition-opacity transition-transform duration-500 ease-in-out opacity-100 whitespace-nowrap ${textVariants[currentTextIndex].bgColor}`}
+                                    style={{ position: "absolute", top: -22, left: 0 }}
+                                    key={currentTextIndex}
+                                >
+                                    {textVariants[currentTextIndex].text}
+                                </span>
                             </span>
-                        </span>
-                    </h1>
+                        </h1>
+                    </div>
                 </div>
-            </div>
-
-            <main className="flex-grow container mx-auto px-4 py-8">
-                <div className="space-y-6">
-                    {/* Search and Filters */}
-                    <div className="bg-gray p-4">
-                        <div className="flex justify-center items-center mb-4">
-                            <div className="relative w-[60%]">
-                                <Input
-                                    type="text"
-                                    placeholder="Recherchez par job, mot-clé ou entreprise"
-                                    className="pl-10 pr-10 rounded-none bg-white border-black border-opacity-50 w-full h-14"
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                />
-                                <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                                <InfoIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                            </div>
-                            <div className="relative w-[20%]">
-                                <Input
-                                    type="text"
-                                    value={location}
-                                    onChange={(e) => setLocation(e.target.value)}
-                                    placeholder="Localisation"
-                                    className="pl-10 pr-10 rounded-none bg-white border-black border-opacity-50 w-full h-14"
-                                />
-                                <MapPinIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                                <XIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer" size={20} onClick={() => setLocation('')} />
-                            </div>
-                            <div className="w-[20%]">
-                                <Select>
-                                    <SelectTrigger className="rounded-none w-full bg-white border-black border-opacity-50 h-14">
-                                        <SelectValue placeholder="Type de job" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <div className="p-2">
-                                            {['CDI', 'CDD', 'Stage', 'Freelance'].map((type) => (
-                                                <div key={type} className="flex items-center space-x-2 mb-2 rounded-none">
-                                                    <Checkbox
-                                                        id={`job-type-${type}`}
-                                                        checked={jobTypes.includes(type)}
-                                                        onCheckedChange={() => handleJobTypeChange(type)}
-                                                    />
-                                                    <label htmlFor={`job-type-${type}`}>{type}</label>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </SelectContent>
-                                </Select>
-                            </div>
+                <div className="flex-grow container mx-auto px-4 py-8">
+                    <div className="flex justify-center items-center mb-4">
+                        <div className="relative w-[60%]">
+                            <Input
+                                type="text"
+                                placeholder="Recherchez par job, mot-clé ou entreprise"
+                                className="pl-10 pr-10 rounded-none bg-white border-black border-opacity-50 w-full h-14"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                            <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                            <InfoIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
                         </div>
-                        <div className="flex justify-between items-center mb-4">
-                            <div className="flex gap-2 w-[60%]">
-                                <Button
-                                    variant={isRemote ? "default" : "outline"}
-                                    className="rounded-none bg-gray border border-black border-opacity-50 hover:shadow-lg transition-shadow duration-200 w-[15%]"
-                                    onClick={() => setIsRemote(!isRemote)}
-                                >
-                                    <HomeIcon size={16} className="mr-2" />
-                                    Télétravail
-                                </Button>
-                                <Button
-                                    variant="outline"
-                                    className="rounded-none bg-gray border border-black border-opacity-50 hover:shadow-lg transition-shadow duration-200 w-[15%]"
-                                    onClick={() => setShowProfessionModal(true)}
-                                >
-                                    Profession
-                                </Button>
-                                <Select value={sector} onValueChange={handleSectorChange}>
-                                    <SelectTrigger className="rounded-none bg-gray border border-black border-opacity-50 hover:shadow-lg transition-shadow duration-200 w-[15%]">
-                                        <PenTool className="w-3 h-3" /><SelectValue placeholder="Secteur" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value=" ">Tous les secteurs</SelectItem>
-                                        <SelectItem value="tech">Tech</SelectItem>
-                                        <SelectItem value="finance">Banque/Assurance/Finance</SelectItem>
-                                        <SelectItem value="education">Education/Formation/Recrutement</SelectItem>
-                                        <SelectItem value="health">Santé/Social/Environnement</SelectItem>
-                                        <SelectItem value="public">Secteur Public et Administration</SelectItem>
-                                        <SelectItem value="hospitality">Hôtellerie</SelectItem>
-                                        <SelectItem value="legal">Droit</SelectItem>
-                                        <SelectItem value="arts">Arts et Divertissement</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                                <Button
-                                    variant="secondary"
-                                    className="rounded-none bg-black text-white hover:shadow-lg hover:bg-yellow-500 transition-shadow duration-200 w-[15%]"
-                                >
-                                    <SlidersIcon size={16} className="mr-2 text-white" />
-                                    Tous les filtres
-                                </Button>
-                            </div>
+                        <div className="relative w-[20%]">
+                            <Input
+                                type="text"
+                                value={location}
+                                onChange={(e) => setLocation(e.target.value)}
+                                placeholder="Localisation"
+                                className="pl-10 pr-10 rounded-none bg-white border-black border-opacity-50 w-full h-14"
+                            />
+                            <MapPinIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                            <XIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer" size={20} onClick={() => setLocation('')} />
                         </div>
-                        <div className="flex flex-wrap gap-2 items-center">
-                            {jobTypes.map(type => (
-                                <span key={type} className="bg-gray-200 text-gray-800 px-2 py-1 text-sm rounded">
-                                    {type}
-                                </span>
-                            ))}
-                            {selectedProfessions.map(profession => (
-                                <span key={profession} className="bg-gray-200 text-gray-800 px-2 py-1 text-sm rounded">
-                                    {profession}
-                                </span>
-                            ))}
-                            {selectedSector && (
-                                <span className="bg-gray-200 text-gray-800 px-2 py-1 text-sm rounded">
-                                    {selectedSector}
-                                </span>
-                            )}
-                            {hasSelection && (
-                                <Button
-                                    variant="outline"
-                                    size="sm"
-                                    onClick={resetAllFilters}
-                                    className="ml-2"
-                                >
-                                    <RotateCcwIcon size={16} className="mr-2" />
-                                    Tout effacer
-                                </Button>
-                            )}
+                        <div className="w-[20%]">
+                            <Select>
+                                <SelectTrigger className="rounded-none w-full bg-white border-black border-opacity-50 h-14">
+                                    <SelectValue placeholder="Type de job" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <div className="p-2">
+                                        {['CDI', 'CDD', 'Stage', 'Freelance'].map((type) => (
+                                            <div key={type} className="flex items-center space-x-2 mb-2 rounded-none">
+                                                <Checkbox
+                                                    id={`job-type-${type}`}
+                                                    checked={jobTypes.includes(type)}
+                                                    onCheckedChange={() => handleJobTypeChange(type)}
+                                                />
+                                                <label htmlFor={`job-type-${type}`}>{type}</label>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </SelectContent>
+                            </Select>
                         </div>
                     </div>
-
+                    <div className="flex justify-between items-center mb-4">
+                        <div className="flex gap-2 w-[60%]">
+                            <Button
+                                variant={isRemote ? "default" : "outline"}
+                                className="rounded-none bg-gray border border-black border-opacity-50 hover:shadow-lg transition-shadow duration-200 w-[15%]"
+                                onClick={() => setIsRemote(!isRemote)}
+                            >
+                                <HomeIcon size={16} className="mr-2" />
+                                Télétravail
+                            </Button>
+                            <Button
+                                variant="outline"
+                                className="rounded-none bg-gray border border-black border-opacity-50 hover:shadow-lg transition-shadow duration-200 w-[15%]"
+                                onClick={() => setShowProfessionModal(true)}
+                            >
+                                Profession
+                            </Button>
+                            <Select value={sector} onValueChange={handleSectorChange}>
+                                <SelectTrigger className="rounded-none bg-gray border border-black border-opacity-50 hover:shadow-lg transition-shadow duration-200 w-[15%]">
+                                    <PenTool className="w-3 h-3" /><SelectValue placeholder="Secteur" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value=" ">Tous les secteurs</SelectItem>
+                                    <SelectItem value="tech">Tech</SelectItem>
+                                    <SelectItem value="finance">Banque/Assurance/Finance</SelectItem>
+                                    <SelectItem value="education">Education/Formation/Recrutement</SelectItem>
+                                    <SelectItem value="health">Santé/Social/Environnement</SelectItem>
+                                    <SelectItem value="public">Secteur Public et Administration</SelectItem>
+                                    <SelectItem value="hospitality">Hôtellerie</SelectItem>
+                                    <SelectItem value="legal">Droit</SelectItem>
+                                    <SelectItem value="arts">Arts et Divertissement</SelectItem>
+                                </SelectContent>
+                            </Select>
+                            <Button variant="secondary"
+                                className="rounded-none bg-black text-white hover:shadow-lg hover:bg-yellow-500 transition-shadow duration-200">
+                                <SlidersIcon size={16} className="text-white" />
+                                Tous les filtres
+                            </Button>
+                        </div>
+                    </div>
+                    <div className="flex flex-wrap gap-2 items-center">
+                        {jobTypes.map(type => (
+                            <span key={type} className="bg-gray-200 text-gray-800 px-2 py-1 text-sm rounded">
+                                {type}
+                            </span>
+                        ))}
+                        {selectedProfessions.map(profession => (
+                            <span key={profession} className="bg-gray-200 text-gray-800 px-2 py-1 text-sm rounded">
+                                {profession}
+                            </span>
+                        ))}
+                        {selectedSector && (
+                            <span className="bg-gray-200 text-gray-800 px-2 py-1 text-sm rounded">
+                                {selectedSector}
+                            </span>
+                        )}
+                        {hasSelection && (
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={resetAllFilters}
+                                className="ml-2"
+                            >
+                                <RotateCcwIcon size={16} className="mr-2" />
+                                Tout effacer
+                            </Button>
+                        )}
+                    </div>
+                </div>
+            </div>
+            <main className="flex-grow container mx-auto px-4 py-8">
+                {/* Search and Filters */}
+                <div className="space-y-6">
                     {/* Modal pour les professions */}
                     <Dialog open={showProfessionModal} onOpenChange={setShowProfessionModal}>
                         <DialogContent>

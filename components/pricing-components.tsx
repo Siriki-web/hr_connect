@@ -31,11 +31,9 @@ export function PricingComponentComponent() {
 	}, []);
 	const [isYearly, setIsYearly] = useState(false)
 	const companies = [
-		{ name: "ABS", logo: "/placeholder.svg?height=30&width=100" },
-		{ name: "NuEra", logo: "/placeholder.svg?height=30&width=100" },
-		{ name: "American Hospital", logo: "/placeholder.svg?height=30&width=100" },
-		{ name: "mindstar", logo: "/placeholder.svg?height=30&width=100" },
-		{ name: "pani", logo: "/placeholder.svg?height=30&width=100" },
+		{ name: "GS2E", logo: "/assets/images/gs2e.jpg" },
+		{ name: "CIE", logo: "/assets/images/Logo_CIE.jpg" },
+		{ name: "SODECI", logo: "/assets/images/logo_sodeci.png" },
 	]
 
 	const faqItems = [
@@ -95,20 +93,20 @@ export function PricingComponentComponent() {
 				</div>
 			</header>
 			<div className="w-full">
-				<div className="bg-[#e6f8fc] w-full py-24 relative">
+				<div className="bg-gradient-to-t from-[#00aaff] to-[#f0f4f8] w-full py-24 relative">
 					{/* Ajout d'un pseudo-élément pour créer la courbe */}
 					<div className="absolute bottom-0 left-0 w-full h-16 bg-white" style={{
 						clipPath: 'ellipse(50% 100% at 50% 100%)'
 					}}></div>
 					<div className="max-w-6xl mx-auto px-4 relative z-10">
-						<h1 className="text-4xl font-bold text-center mb-8">Simple and Scalable Pricing</h1>
+						<h1 className="text-4xl font-bold text-center mb-8">Tarification simple et évolution</h1>
 						<div className="flex items-center justify-center mb-12">
-							<span className="mr-2">Pay monthly</span>
+							<span className="mr-2">Par mois</span>
 							<Switch
 								checked={isYearly}
 								onCheckedChange={setIsYearly}
 							/>
-							<span className="ml-2">Pay yearly</span>
+							<span className="ml-2">Par année</span>
 							<span className="ml-2 bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">Save 28%</span>
 						</div>
 
@@ -167,8 +165,8 @@ export function PricingComponentComponent() {
 					<div className="text-center mb-12">
 						<h2 className="text-3xl font-bold mb-4 flex items-center justify-center">
 							<span className="text-yellow-400 mr-2">🌾</span>
-							Trusted Applicant Tracking System by
-							<br />Leading Talent Acquisition Teams
+							Système de suivi des candidatures fiable, utilisé par
+							<br />les principales équipes de recrutement de talents"
 							<span className="text-yellow-400 ml-2">🌾</span>
 						</h2>
 						<div className="flex flex-wrap justify-center items-center gap-8 mt-8">
@@ -187,9 +185,8 @@ export function PricingComponentComponent() {
 
 					<div className="grid md:grid-cols-2 gap-8 items-start">
 						<h2 className="text-4xl font-bold text-gray-900">
-							Frequently<br />
-							Asked<br />
-							Questions
+							Foire aux<br />
+							Questions<br />
 						</h2>
 						<Accordion type="single" collapsible className="w-full">
 							{faqItems.map((item, index) => (
@@ -212,7 +209,7 @@ export function PricingComponentComponent() {
 				{/* Testimonials */}
 				<section className="py-20">
 					<div className="container mx-auto px-4">
-						<h2 className="text-3xl font-bold text-center mb-12">Impressive Results for Our Clients</h2>
+						<h2 className="text-3xl font-bold text-center mb-12">Des résultats impressionnants pour nos clients</h2>
 						<div className="flex justify-center">
 							<Card className="w-full max-w-2xl">
 								<CardContent className="p-6">
@@ -228,23 +225,23 @@ export function PricingComponentComponent() {
 				<div className="container mx-auto px-4">
 					<div className="grid grid-cols-1 md:grid-cols-4 gap-8">
 						<div>
-							<h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+							<h3 className="text-lg font-semibold mb-4">Liens rapides</h3>
 							<ul className="space-y-2">
 								<li><Link href="/contact">Contact</Link></li>
-								<li><Link href="/about">About</Link></li>
+								<li><Link href="/about">À propos</Link></li>
 								<li><Link href="/blog">Blog</Link></li>
 							</ul>
 						</div>
 						<div>
 							<h3 className="text-lg font-semibold mb-4">Legal</h3>
 							<ul className="space-y-2">
-								<li><Link href="/privacy-policy">Privacy Policy</Link></li>
-								<li><Link href="/terms-of-service">Terms of Service</Link></li>
+								<li><Link href="/privacy-policy">Politique de confidentialité</Link></li>
+								<li><Link href="/terms-of-service">Conditions d'utilisation</Link></li>
 							</ul>
 						</div>
 						<div className="md:col-span-2">
-							<h3 className="text-lg font-semibold mb-4">Join thousands of companies that are recruiting more effectively with our solution.</h3>
-							<Button size="lg">Get Started Today</Button>
+							<h3 className="text-lg font-semibold mb-4">Rejoignez des milliers d'entreprises qui recrutent plus efficacement avec notre solution.</h3>
+							<Button size="lg">Commencez dès aujourd'hui</Button>
 						</div>
 					</div>
 					<div className="mt-8 pt-8 border-t border-gray-700 text-center">

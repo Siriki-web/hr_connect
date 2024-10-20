@@ -9,6 +9,8 @@ import { useRouter } from 'next/navigation'
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import type { Engine } from "tsparticles-engine";
+import { Header } from '@/components/Header'
+import { Footer } from '@/components/Footer'
 
 // Flux de navigation :
 // 1. L'utilisateur clique sur un plan ou le bouton d'essai gratuit
@@ -62,32 +64,7 @@ export function LandingPageComponent() {
 
 	return (
 		<div className="flex flex-col min-h-screen">
-			<header className="bg-white shadow-sm">
-				<div className="container mx-auto px-4 py-4 flex justify-between items-center">
-					<Link href="/" className="flex items-center space-x-2">
-						<BriefcaseIcon className="h-8 w-8 text-primary" />
-						<span className="text-xl font-bold">TalentHub</span>
-					</Link>
-					<nav className="hidden md:flex space-x-4">
-						<Link href="/" className="text-gray-600 hover:text-gray-900">Accueil</Link>
-						<Link href="/job-offers" className="text-gray-600 hover:text-gray-900">Offres d'emploi</Link>
-						<Link href="/features" className="text-gray-600 hover:text-gray-900">Fonctionnalités</Link>
-						<Link href="/pricing-components" className="text-gray-600 hover:text-gray-900">Tarifs</Link>
-						<Link href="/contact" className="text-gray-600 hover:text-gray-900">Contact</Link>
-					</nav>
-					<div className="flex space-x-2">
-						<Button variant="outline" asChild>
-							<Link href="/espace-candidat">Espace Candidat</Link>
-						</Button>
-						<Button
-							variant="default"
-							onClick={() => router.push('/login')}
-						>
-							Espace Recruteur
-						</Button>
-					</div>
-				</div>
-			</header>
+			<Header />
 
 			<main className="flex-grow">
 				{/* Hero Section */}
@@ -191,7 +168,7 @@ export function LandingPageComponent() {
 
 
 				{/* Key Features */}
-				<section className="py-20 relative" style={{ backgroundImage: "linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px)", backgroundSize: "20px 20px" }}>
+				<section className="py-20 relative" style={{ backgroundImage: "linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px)", backgroundSize: "22px 22px" }}>
 					<div className="absolute top-0 left-0 w-full overflow-hidden" style={{ transform: 'translateY(-1px)' }}>
 						<svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-12">
 							<defs>
@@ -378,34 +355,7 @@ export function LandingPageComponent() {
 
 			</main>
 
-			<footer className="bg-gray-800 text-white py-12">
-				<div className="container mx-auto px-4">
-					<div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-						<div>
-							<h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-							<ul className="space-y-2">
-								<li><Link href="/contact">Contact</Link></li>
-								<li><Link href="/about">About</Link></li>
-								<li><Link href="/blog">Blog</Link></li>
-							</ul>
-						</div>
-						<div>
-							<h3 className="text-lg font-semibold mb-4">Legal</h3>
-							<ul className="space-y-2">
-								<li><Link href="/privacy-policy">Privacy Policy</Link></li>
-								<li><Link href="/terms-of-service">Terms of Service</Link></li>
-							</ul>
-						</div>
-						<div className="md:col-span-2">
-							<h3 className="text-lg font-semibold mb-4">Join thousands of companies that are recruiting more effectively with our solution.</h3>
-							<Button size="lg">Get Started Today</Button>
-						</div>
-					</div>
-					<div className="mt-8 pt-8 border-t border-gray-700 text-center">
-						<p>&copy; 2024 TalentHub. All rights reserved.</p>
-					</div>
-				</div>
-			</footer>
+			<Footer />
 		</div>
 	)
 }
