@@ -39,28 +39,28 @@ export function PricingComponentComponent() {
 	const faqItems = [
 		{ question: "Do you offer a Free Trial?", answer: "Yes, we offer a 14-day free trial on all our plans." },
 		{ question: "Do I need to enter my credit card details to sign up?", answer: "No, you don't need to enter your credit card details to sign up for our free trial." },
-		{ question: "Do you offer any discounted plans?", answer: "Yes, we offer discounted annual plans that can save you up to 20% compared to monthly billing." },
+		{ question: "Proposez-vous des plans à prix réduit?", answer: "Oui, nous proposons des plans annuels à prix réduit qui peuvent vous faire économiser jusqu'à 20% par rapport à la facturation mensuelle." },
 	]
 
 	const plans = [
 		{
-			name: "Starter",
-			description: "Maximize your startup's hiring potential with this utility plan",
+			name: "Startup",
+			description: "Maximisez le potentiel de recrutement de votre startup avec ce plan utilitaire",
 			price: 99,
-			features: ["10 Active Job Posts", "10 Company Users"],
+			features: ["10 offres d'empli actives", "10 utilisateurs d'entreprise"],
 		},
 		{
 			name: "Growth",
-			description: "Best plan to elevate hiring capabilities for growing teams",
+			description: "Meilleur plan pour améliorer les capacités de recrutement des équipes en croissance",
 			price: 149,
-			features: ["20 Active Job Posts", "50 Company Users"],
+			features: ["20 Aoffres d'emploi actives", "50 utilisateurs d'entreprise"],
 			bestValue: true,
 		},
 		{
-			name: "Business",
-			description: "Master large-scale hiring with Recooty's premier features",
+			name: "Entreprise",
+			description: "Maîtrisez le recrutement à grande échelle avec les fonctionnalités premium de TalendHub",
 			price: 199,
-			features: ["50 Active Job Posts", "100 Company Users"],
+			features: ["50 offres d'emploi actives", "100 utilisateurs d'entreprise"],
 		},
 	]
 
@@ -107,7 +107,7 @@ export function PricingComponentComponent() {
 								onCheckedChange={setIsYearly}
 							/>
 							<span className="ml-2">Par année</span>
-							<span className="ml-2 bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">Save 28%</span>
+							<span className="ml-2 bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">Economisez 28%</span>
 						</div>
 
 						<div className="grid md:grid-cols-3 gap-8">
@@ -122,29 +122,29 @@ export function PricingComponentComponent() {
 									<div className="p-8">
 										{plan.bestValue && (
 											<div className="bg-yellow-400 text-yellow-900 text-xs font-bold uppercase px-3 py-1 rounded-full inline-block mb-4">
-												Best Value
+												Meilleur valeur
 											</div>
 										)}
 										<h2 className="text-2xl font-bold mb-2">{plan.name}</h2>
 										<p className="text-sm mb-6 opacity-75">{plan.description}</p>
 										<div className="text-4xl font-bold mb-2">
 											${isYearly ? plan.price * 12 * 0.72 : plan.price}
-											<span className="text-lg font-normal">/Month</span>
+											<span className="text-lg font-normal">/Mois</span>
 										</div>
-										<p className="text-sm mb-6 opacity-75">Billed annually</p>
+										<p className="text-sm mb-6 opacity-75">Facturé annuellement</p>
 										<Button
 											className={`w-full ${plan.bestValue
 												? 'bg-blue-500 hover:bg-blue-600'
 												: 'bg-white text-blue-500 hover:bg-gray-100'
 												}`}
 										>
-											Get a Free 14-Day Trial
+											Obtenez un essai gratuit de jours 
 										</Button>
 										{/*<p className="text-xs text-center mt-2 opacity-75">No credit card needed</p>*/}
 									</div>
 									<div className={`border-t ${plan.name === "Growth" ? 'border-gray-700' : 'border-gray-200'
 										} p-8`}>
-										<h3 className="font-bold mb-4">Key Features:</h3>
+										<h3 className="font-bold mb-4">Fonctionnalités clés:</h3>
 										<ul className="space-y-2">
 											{plan.features.map((feature, featureIndex) => (
 												<li key={featureIndex} className="flex items-center">
@@ -165,8 +165,8 @@ export function PricingComponentComponent() {
 					<div className="text-center mb-12">
 						<h2 className="text-3xl font-bold mb-4 flex items-center justify-center">
 							<span className="text-yellow-400 mr-2">🌾</span>
-							Système de suivi des candidatures fiable, utilisé par
-							<br />les principales équipes de recrutement de talents"
+							Système de suivi des candidatures fiables, utilisé par
+							<br />les principales équipes de recrutement de talents
 							<span className="text-yellow-400 ml-2">🌾</span>
 						</h2>
 						<div className="flex flex-wrap justify-center items-center gap-8 mt-8">

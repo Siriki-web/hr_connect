@@ -17,9 +17,9 @@ export function HrDashboard() {
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-md">
+      <aside className="w-72 bg-white shadow-md">
         <div className="p-4">
-          <h1 className="text-2xl font-bold text-blue-600">HR Dashboard</h1>
+          <h1 className="text-2xl font-bold text-blue-600">Tableau de bord RH</h1>
         </div>
         <nav className="mt-6">
           <a href="#" className="flex items-center px-4 py-2 text-gray-700 bg-gray-100">

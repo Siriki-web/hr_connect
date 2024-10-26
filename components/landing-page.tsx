@@ -3,8 +3,8 @@
 import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { BriefcaseIcon, ClipboardCheckIcon, FileTextIcon, PhoneIcon, StarIcon, GroupIcon, ChevronDownIcon, ChevronRightIcon } from 'lucide-react'
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { BriefcaseIcon, ClipboardCheckIcon, FileTextIcon, PhoneIcon, StarIcon, GroupIcon, ChevronDownIcon, ChevronRightIcon, User, ThumbsUp, Clock, Headset } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
@@ -28,6 +28,13 @@ export function LandingPageComponent() {
 		{ quote: "Thanks to the AI, we've hired talent we would have never discovered on our own.", company: "Company B" },
 		{ quote: "The automated interviews have saved us countless hours. It's revolutionary!", company: "Company C" },
 	];
+
+	const raisons = [
+					{icon: Clock, title: "Gain de temps", description: "Automatisation complète de la sélection de CV et des entretiens téléphoniques."}, 
+					{icon: User, title: "Candidats de qualité", description: "Sélection précise et personnalisée grâce à l'IA générative."}, 
+					{icon: ThumbsUp, title: "Facilité d'utilisation", description: "Navigation intuitive avec interface claire et conviviale."}, 
+					{icon: Headset, title: "Support client dédié", description: "Assistance 24h/24 et 7j/7 pour vous accompagner dans votre recrutement."}
+				]
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -238,41 +245,110 @@ export function LandingPageComponent() {
 
 
 				{/* Testimonials */}
-				<section className="py-20 bg-[#f9fafb]">
+				{/*<section className="py-20 bg-[#f9fafb]">
 					<div className="container mx-auto px-4">
 						<h2 className="text-4xl font-bold text-center mb-10 text-gray-800">Des résultats impressionnants pour nos clients</h2>
 						<div className="flex justify-center">
 							<Card className="w-full max-w-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
 								<CardContent className="p-8 bg-white rounded-lg">
-									<p className="italic text-lg">"{testimonials[currentTestimonialIndex].quote}"</p>
+									<p className="italic text-lg">{testimonials[currentTestimonialIndex].quote}</p>
 									<p className="text-right font-bold mt-4">— {testimonials[currentTestimonialIndex].company}</p>
 								</CardContent>
 							</Card>
 						</div>
 					</div>
+				</section>*/}
+				<section className="bg-gray-50 py-12">
+					<div className="max-w-7xl mx-auto text-center">
+						<h2 className="text-3xl font-extrabold text-gray-900">What Our Clients Say</h2>
+						<p className="text-lg text-gray-600 mt-2">Real feedback from our trusted customers</p>
+
+						<div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+						<div className="bg-white shadow-lg rounded-lg p-6">
+							<div className="text-left">
+							<svg
+								className="text-gray-400 h-6 w-6 mb-4"
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24"
+								fill="currentColor"
+							>
+								<path
+								fillRule="evenodd"
+								d="M5 12a7 7 0 110-14 7 7 0 010 14zm14 0a7 7 0 110-14 7 7 0 010 14z"
+								/>
+							</svg>
+							<blockquote className="text-lg font-semibold italic text-gray-800 leading-relaxed">
+								"This product completely transformed our recruitment process. We’ve seen tremendous improvement in candidate quality!"
+							</blockquote>
+							<p className="mt-4 text-base font-medium text-gray-900">— John Doe, HR Manager</p>
+							</div>
+						</div>
+
+						<div className="bg-white shadow-lg rounded-lg p-6">
+							<div className="text-left">
+							<svg
+								className="text-gray-400 h-6 w-6 mb-4"
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24"
+								fill="currentColor"
+							>
+								<path
+								fillRule="evenodd"
+								d="M5 12a7 7 0 110-14 7 7 0 010 14zm14 0a7 7 0 110-14 7 7 0 010 14z"
+								/>
+							</svg>
+							<blockquote className="text-lg font-semibold italic text-gray-800 leading-relaxed">
+								"A game changer for our hiring process. The automation saved us hours each week!"
+							</blockquote>
+							<p className="mt-4 text-base font-medium text-gray-900">— Jane Smith, Tech Lead</p>
+							</div>
+						</div>
+
+						<div className="bg-white shadow-lg rounded-lg p-6">
+							<div className="text-left">
+							<svg
+								className="text-gray-400 h-6 w-6 mb-4"
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24"
+								fill="currentColor"
+							>
+								<path
+								fillRule="evenodd"
+								d="M5 12a7 7 0 110-14 7 7 0 010 14zm14 0a7 7 0 110-14 7 7 0 010 14z"
+								/>
+							</svg>
+							<blockquote className="text-lg font-semibold italic text-gray-800 leading-relaxed">
+								"The best investment we made for scaling our team!"
+							</blockquote>
+							<p className="mt-4 text-base font-medium text-gray-900">— Alice Wong, Operations Director</p>
+							</div>
+						</div>
+						</div>
+					</div>
 				</section>
 
 
+
 				{/* Competitive Advantages */}
-				<section className="bg-[#f3f3f3] py-20">
+				<section className="bg-[#f3f3f3] py-16 px-4">
 					<div className="container mx-auto px-4">
 						<h2 className="text-4xl font-bold text-center mb-12 text-gray-800">Les raisons de nous choisir</h2>
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-							{[
-								{ title: "Gain de temps", description: "Automatisation complète de la sélection de CV et des entretiens téléphoniques." },
-								{ title: "Candidats de qualité", description: "Sélection précise et personnalisée grâce à l'IA générative." },
-								{ title: "Facilité d'utilisation", description: "Interface claire et conviviale." },
-								{ title: "Support client dédié", description: "Assistance 24h/24 et 7j/7 pour vous accompagner dans votre recrutement." },
-							].map((advantage, index) => (
+						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+							{raisons.map((raison, index) => (
 								<Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+									<CardHeader>
+										<raison.icon className="w-8 h-8 text-green-500 mx-auto" />
+									</CardHeader>
 									<CardContent className="p-6 bg-white rounded-lg shadow-md">
-										<h3 className="text-2xl font-semibold mb-2 text-gray-800">{advantage.title}</h3>
-										<p className="text-gray-600">{advantage.description}</p>
+										<CardTitle className='text-xl font-semibold text-center mb-2'>{raison.title}</CardTitle>
+										{/*<h3 className="text-2xl font-semibold mb-2 text-gray-800">{raison.title}</h3>*/}
+										<p className="text-gray-600 text-sm text-center">{raison.description}</p>
 									</CardContent>
 								</Card>
 							))}
 						</div>
 					</div>
+					
 				</section>
 
 
@@ -342,10 +418,10 @@ export function LandingPageComponent() {
 								</Card>
 							))}
 						</div>
-						<section className="call-to-action-section py-12 bg-[#fffde7] text-black text-center mt-10">
+						<section className="call-to-action-section py-12 bg-[#A5D0A8] text-black text-center mt-10">
 							<h2 className="text-3xl font-semibold mb-6">Prêt à transformer votre processus de recrutement ?</h2>
 							<p className="text-lg mb-8">Inscrivez-vous dès aujourd'hui et découvrez la puissance du recrutement piloté par l'IA.</p>
-							<Button className="bg-[#ffaa00] text-black font-semibold py-4 px-8 rounded-lg hover:bg-[#e69500] transition-colors">
+							<Button className="bg-[#000] text-white font-semibold py-4 px-8 rounded-50 hover:bg-[#e69500] transition-colors">
 								Commencer maintenant
 							</Button>
 
