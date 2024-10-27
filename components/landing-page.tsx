@@ -30,11 +30,11 @@ export function LandingPageComponent() {
 	];
 
 	const raisons = [
-					{icon: Clock, title: "Gain de temps", description: "Automatisation complète de la sélection de CV et des entretiens téléphoniques."}, 
-					{icon: User, title: "Candidats de qualité", description: "Sélection précise et personnalisée grâce à l'IA générative."}, 
-					{icon: ThumbsUp, title: "Facilité d'utilisation", description: "Navigation intuitive avec interface claire et conviviale."}, 
-					{icon: Headset, title: "Support client dédié", description: "Assistance 24h/24 et 7j/7 pour vous accompagner dans votre recrutement."}
-				]
+		{ icon: Clock, title: "Gain de temps", description: "Automatisation complète de la sélection de CV et des entretiens téléphoniques." },
+		{ icon: User, title: "Candidats de qualité", description: "Sélection précise et personnalisée grâce à l'IA générative." },
+		{ icon: ThumbsUp, title: "Facilité d'utilisation", description: "Navigation intuitive avec interface claire et conviviale." },
+		{ icon: Headset, title: "Support client dédié", description: "Assistance 24h/24 et 7j/7 pour vous accompagner dans votre recrutement." }
+	]
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -264,65 +264,65 @@ export function LandingPageComponent() {
 						<p className="text-lg text-gray-600 mt-2">Real feedback from our trusted customers</p>
 
 						<div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-						<div className="bg-white shadow-lg rounded-lg p-6">
-							<div className="text-left">
-							<svg
-								className="text-gray-400 h-6 w-6 mb-4"
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24"
-								fill="currentColor"
-							>
-								<path
-								fillRule="evenodd"
-								d="M5 12a7 7 0 110-14 7 7 0 010 14zm14 0a7 7 0 110-14 7 7 0 010 14z"
-								/>
-							</svg>
-							<blockquote className="text-lg font-semibold italic text-gray-800 leading-relaxed">
-								"This product completely transformed our recruitment process. We’ve seen tremendous improvement in candidate quality!"
-							</blockquote>
-							<p className="mt-4 text-base font-medium text-gray-900">— John Doe, HR Manager</p>
+							<div className="bg-white shadow-lg rounded-lg p-6">
+								<div className="text-left">
+									<svg
+										className="text-gray-400 h-6 w-6 mb-4"
+										xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 24 24"
+										fill="currentColor"
+									>
+										<path
+											fillRule="evenodd"
+											d="M5 12a7 7 0 110-14 7 7 0 010 14zm14 0a7 7 0 110-14 7 7 0 010 14z"
+										/>
+									</svg>
+									<blockquote className="text-lg font-semibold italic text-gray-800 leading-relaxed">
+										"This product completely transformed our recruitment process. We’ve seen tremendous improvement in candidate quality!"
+									</blockquote>
+									<p className="mt-4 text-base font-medium text-gray-900">— John Doe, HR Manager</p>
+								</div>
 							</div>
-						</div>
 
-						<div className="bg-white shadow-lg rounded-lg p-6">
-							<div className="text-left">
-							<svg
-								className="text-gray-400 h-6 w-6 mb-4"
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24"
-								fill="currentColor"
-							>
-								<path
-								fillRule="evenodd"
-								d="M5 12a7 7 0 110-14 7 7 0 010 14zm14 0a7 7 0 110-14 7 7 0 010 14z"
-								/>
-							</svg>
-							<blockquote className="text-lg font-semibold italic text-gray-800 leading-relaxed">
-								"A game changer for our hiring process. The automation saved us hours each week!"
-							</blockquote>
-							<p className="mt-4 text-base font-medium text-gray-900">— Jane Smith, Tech Lead</p>
+							<div className="bg-white shadow-lg rounded-lg p-6">
+								<div className="text-left">
+									<svg
+										className="text-gray-400 h-6 w-6 mb-4"
+										xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 24 24"
+										fill="currentColor"
+									>
+										<path
+											fillRule="evenodd"
+											d="M5 12a7 7 0 110-14 7 7 0 010 14zm14 0a7 7 0 110-14 7 7 0 010 14z"
+										/>
+									</svg>
+									<blockquote className="text-lg font-semibold italic text-gray-800 leading-relaxed">
+										"A game changer for our hiring process. The automation saved us hours each week!"
+									</blockquote>
+									<p className="mt-4 text-base font-medium text-gray-900">— Jane Smith, Tech Lead</p>
+								</div>
 							</div>
-						</div>
 
-						<div className="bg-white shadow-lg rounded-lg p-6">
-							<div className="text-left">
-							<svg
-								className="text-gray-400 h-6 w-6 mb-4"
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24"
-								fill="currentColor"
-							>
-								<path
-								fillRule="evenodd"
-								d="M5 12a7 7 0 110-14 7 7 0 010 14zm14 0a7 7 0 110-14 7 7 0 010 14z"
-								/>
-							</svg>
-							<blockquote className="text-lg font-semibold italic text-gray-800 leading-relaxed">
-								"The best investment we made for scaling our team!"
-							</blockquote>
-							<p className="mt-4 text-base font-medium text-gray-900">— Alice Wong, Operations Director</p>
+							<div className="bg-white shadow-lg rounded-lg p-6">
+								<div className="text-left">
+									<svg
+										className="text-gray-400 h-6 w-6 mb-4"
+										xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 24 24"
+										fill="currentColor"
+									>
+										<path
+											fillRule="evenodd"
+											d="M5 12a7 7 0 110-14 7 7 0 010 14zm14 0a7 7 0 110-14 7 7 0 010 14z"
+										/>
+									</svg>
+									<blockquote className="text-lg font-semibold italic text-gray-800 leading-relaxed">
+										"The best investment we made for scaling our team!"
+									</blockquote>
+									<p className="mt-4 text-base font-medium text-gray-900">— Alice Wong, Operations Director</p>
+								</div>
 							</div>
-						</div>
 						</div>
 					</div>
 				</section>
@@ -335,20 +335,23 @@ export function LandingPageComponent() {
 						<h2 className="text-4xl font-bold text-center mb-12 text-gray-800">Les raisons de nous choisir</h2>
 						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 							{raisons.map((raison, index) => (
-								<Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+								<Card
+									key={index}
+									className="hover:shadow-lg transition-shadow duration-300 rounded-full w-64 h-64 flex flex-col items-center justify-center bg-white shadow-md"
+								>
 									<CardHeader>
-										<raison.icon className="w-8 h-8 text-green-500 mx-auto" />
+										<raison.icon className="w-8 h-8 text-blue-500 mx-auto mb-0" />
 									</CardHeader>
-									<CardContent className="p-6 bg-white rounded-lg shadow-md">
-										<CardTitle className='text-xl font-semibold text-center mb-2'>{raison.title}</CardTitle>
-										{/*<h3 className="text-2xl font-semibold mb-2 text-gray-800">{raison.title}</h3>*/}
-										<p className="text-gray-600 text-sm text-center">{raison.description}</p>
+									<CardContent className="p-4 text-center">
+										<CardTitle className="text-xl font-semibold mb-2 mt-0">{raison.title}</CardTitle>
+										<p className="text-gray-600 text-sm mt-0">{raison.description}</p>
 									</CardContent>
 								</Card>
+
 							))}
 						</div>
 					</div>
-					
+
 				</section>
 
 

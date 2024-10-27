@@ -141,9 +141,9 @@ export function JobOffersComponent() {
                     </nav>
 
                     {/* Action Button */}
-                    <Button variant="outline" className="rounded-none border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-300" onClick={() => router.push('/login')}>
+                    {/*<Button variant="outline" className="rounded-none border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-300" onClick={() => router.push('/login')}>
                         Se connecter
-                    </Button>
+                    </Button>*/}
 
                     {/* Mobile Menu Toggle */}
                     <button className="block md:hidden text-gray-600 focus:outline-none">
@@ -231,21 +231,21 @@ export function JobOffersComponent() {
                         <div className="flex gap-2 w-[60%]">
                             <Button
                                 variant={isRemote ? "default" : "outline"}
-                                className="rounded-none bg-gray border border-black border-opacity-50 hover:shadow-lg transition-shadow duration-200 w-[15%]"
+                                className="rounded-lg bg-gray border border-black border-opacity-50 hover:shadow-lg transition-shadow duration-200 w-[15%]"
                                 onClick={() => setIsRemote(!isRemote)}
                             >
-                                <HomeIcon size={16} className="mr-2" />
+                                <HomeIcon size={16} className="mr-0" />
                                 Télétravail
                             </Button>
                             <Button
                                 variant="outline"
-                                className="rounded-none bg-gray border border-black border-opacity-50 hover:shadow-lg transition-shadow duration-200 w-[15%]"
+                                className="rounded-lg bg-gray border border-black border-opacity-50 hover:shadow-lg transition-shadow duration-200 w-[15%]"
                                 onClick={() => setShowProfessionModal(true)}
                             >
                                 Profession
                             </Button>
                             <Select value={sector} onValueChange={handleSectorChange}>
-                                <SelectTrigger className="rounded-none bg-gray border border-black border-opacity-50 hover:shadow-lg transition-shadow duration-200 w-[15%]">
+                                <SelectTrigger className="rounded-lg bg-gray border border-black border-opacity-50 hover:shadow-lg transition-shadow duration-200 w-[15%]">
                                     <PenTool className="w-3 h-3" /><SelectValue placeholder="Secteur" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -261,7 +261,7 @@ export function JobOffersComponent() {
                                 </SelectContent>
                             </Select>
                             <Button variant="secondary"
-                                className="rounded-none bg-black text-white hover:shadow-lg hover:bg-yellow-500 transition-shadow duration-200">
+                                className="rounded-lg bg-black text-white hover:shadow-lg hover:bg-yellow-500 transition-shadow duration-200">
                                 <SlidersIcon size={16} className="text-white" />
                                 Tous les filtres
                             </Button>
@@ -341,12 +341,12 @@ export function JobOffersComponent() {
                             </div>
                         </div>
                         <div className="flex items-center gap-4">
-                            <Button variant="default" className="bg-yellow-400 text-black hover:bg-yellow-500 rounded-none">
+                            <Button variant="default" className="bg-yellow-400 text-black hover:bg-yellow-500 rounded-lg">
                                 <BellIcon size={16} className="mr-2" />
                                 Créer une alerte
                             </Button>
                             <Select defaultValue="relevance">
-                                <SelectTrigger className="w-[200px] rounded-none">
+                                <SelectTrigger className="w-[200px] rounded-lg">
                                     <SelectValue placeholder="Trier par pertinence" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -355,7 +355,7 @@ export function JobOffersComponent() {
                                     <SelectItem value="salary">Trier par salaire</SelectItem>
                                 </SelectContent>
                             </Select>
-                            <div className="flex border rounded-none">
+                            <div className="flex border rounded-lg">
                                 <Button variant="ghost" size="icon" className="rounded-none">
                                     <LayoutGridIcon className="h-4 w-4" />
                                 </Button>
@@ -370,7 +370,7 @@ export function JobOffersComponent() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {currentJobs.map((job) => (
                             <Link href={`/job-offers/${job.id}`} key={job.id}>
-                                <Card className="overflow-hidden rounded-none hover:shadow-lg transition-shadow duration-200">
+                                <Card className="overflow-hidden rounded-lg hover:shadow-lg transition-shadow duration-200">
                                     <Image
                                         src={job.image}
                                         alt={`${job.company} office`}

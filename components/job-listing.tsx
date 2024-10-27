@@ -113,21 +113,21 @@ export function JobListingComponent({ jobId }: { jobId: string }) {
                             <h1 className="text-3xl font-bold mb-4">{job.title}</h1>
 
                             <div className="flex flex-wrap gap-2 mb-6">
-                                <span className="font-semibold bg-gradient-to-r from-[#f0f4f8] to-[#00aaff] text-gray-800 px-3 py-1 rounded-none border border-gray-400 text-sm flex items-center">
+                                <span className="font-semibold bg-[#f0f4f8] text-gray-800 px-3 py-1 rounded-sm border border-gray-400 text-sm flex items-center">
                                     <FilePenLine size={16} className="mr-2" />{job.type}
                                 </span>
-                                <span className="font-semibold bg-gradient-to-r from-[#f0f4f8] to-[#00aaff] text-gray-800 px-3 py-1 rounded-none border border-gray-400 text-sm flex items-center">
+                                <span className="font-semibold bg-[#f0f4f8] text-gray-800 px-3 py-1 rounded-sm border border-gray-400 text-sm flex items-center">
                                     <MapPin size={16} className="mr-2" /> {job.location}
                                 </span>
-                                <span className="font-semibold bg-gradient-to-r from-[#f0f4f8] to-[#00aaff] text-gray-800 px-3 py-1 rounded-none border border-gray-400 text-sm flex items-center">
+                                <span className="font-semibold bg-[#f0f4f8] text-gray-800 px-3 py-1 rounded-sm border border-gray-400 text-sm flex items-center">
                                     <House size={16} className="mr-2" />{job.remote}
                                 </span>
                             </div>
 
                             <div className="flex justify-between gap-4 mb-2">
                                 <div className='flex gap-4'>
-                                    <Button className="rounded-none bg-[#FFA500]">Postuler <ExternalLink size={16} className="ml-2" /></Button>
-                                    <Button variant="outline" className="rounded-none">
+                                    <Button className="rounded-sm bg-[#FFA500]">Postuler <ExternalLink size={16} className="ml-2" /></Button>
+                                    <Button variant="outline" className="rounded-sm">
                                         <BookmarkIcon size={16} className="mr-2" />
                                         Sauvegarder
                                     </Button>
@@ -136,7 +136,7 @@ export function JobListingComponent({ jobId }: { jobId: string }) {
                                     {/*<span className="flex items-center">
                                         <Clock size={16} className="mr-1" /> {job.postedTime || "Récemment publié"}
                                     </span>  */}
-                                    
+
                                     <Button variant="ghost" size="sm">
                                         <Share className="mr-2" />
                                     </Button>
@@ -160,49 +160,52 @@ export function JobListingComponent({ jobId }: { jobId: string }) {
 
                 <div className="w-full md:w-[70%] space-y-6">
                     <Card className="w-full rounded-none">
-                <CardHeader className="flex border-b border-[#FFA500]">
-                    <h2 className="text-2xl font-bold">Le poste</h2>
-                </CardHeader>
-                <CardContent className="p-6">
-                    <div className="space-y-6">
-                        <section>
-                            <h3 className="text-xl font-semibold mb-2">Description</h3>
-                            <p className="text-gray-700">
-                                {job.description}
-                            </p>
-                        </section>
+                        <CardHeader className="flex border-b border-[#FFA500]">
+                            <div className="flex items-center">
+                                <div className="w-6 h-1 bg-[#FFA500] mr-2"></div>
+                                <h2 className="text-2xl font-bold">Le poste</h2>
+                            </div>
+                        </CardHeader>
+                        <CardContent className="p-6">
+                            <div className="space-y-6">
+                                <section>
+                                    <h3 className="text-xl font-semibold mb-2">Description</h3>
+                                    <p className="text-gray-700">
+                                        {job.description}
+                                    </p>
+                                </section>
 
-                        <section>
-                            <h3 className="text-xl font-semibold mb-2">Mission</h3>
-                            <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                                <li>Tu souhaites faire partie d’une équipe de professionnels internationaux qui regroupe 10 nationalités différentes et 15 langues vivantes ;</li>
-                                <li>Tu es intéressé à travailler avec des entreprises basées à l’étranger ;</li>
-                                <li>Tu souhaites être l’interlocuteur privilégié de clients qui ne sont pas familier avec l’environnement comptable et fiscal français;</li>
-                                <li>Tu es prêt à améliorer tes compétences et apprendre des nouvelles méthodes de travail et de nouvelles expertises ;</li>
-                                <li>Tu souhaites utiliser des solutions logiciels de comptabilité et de fiscalité les plus avancées du marché.</li>
-                                <li>Tu penses que le monde de la comptabilité doit changer pour le mieux, et tu crois pouvoir nous aider à dynamiser la profession.</li>
-                                <li>Tu partages aussi nos valeurs de dépassement de soi, de courage, de dévouement et d’esprit d’équipe.</li>
-                            </ul>
-                        </section>
+                                <section>
+                                    <h3 className="text-xl font-semibold mb-2">Mission</h3>
+                                    <ul className="list-disc pl-5 space-y-2 text-gray-700">
+                                        <li>Tu souhaites faire partie d&apos;une équipe de professionnels internationaux qui regroupe 10 nationalités différentes et 15 langues vivantes ;</li>
+                                        <li>Tu es intéressé à travailler avec des entreprises basées à l&apos;étranger ;</li>
+                                        <li>Tu souhaites être l&apos;interlocuteur privilégié de clients qui ne sont pas familier avec l&apos;environnement comptable et fiscal français;</li>
+                                        <li>Tu es prêt à améliorer tes compétences et apprendre des nouvelles méthodes de travail et de nouvelles expertises ;</li>
+                                        <li>Tu souhaites utiliser des solutions logiciels de comptabilité et de fiscalité les plus avancées du marché.</li>
+                                        <li>Tu penses que le monde de la comptabilité doit changer pour le mieux, et tu crois pouvoir nous aider à dynamiser la profession.</li>
+                                        <li>Tu partages aussi nos valeurs de dépassement de soi, de courage, de dévouement et d&apos;esprit d&apos;équipe.</li>
+                                    </ul>
+                                </section>
 
-                        <section>
-                            <h3 className="text-xl font-semibold mb-2">PROFIL</h3>
-                            <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                                <li>Formation BAC +5</li>
-                                <li>Réunion en anglais</li>
-                                <li>Maîtrise de Word</li>
-                            </ul>
-                        </section>
-                    </div>
-                </CardContent>
-            </Card>
+                                <section>
+                                    <h3 className="text-xl font-semibold mb-2">PROFIL</h3>
+                                    <ul className="list-disc pl-5 space-y-2 text-gray-700">
+                                        <li>Formation BAC +5</li>
+                                        <li>Réunion en anglais</li>
+                                        <li>Maîtrise de Word</li>
+                                    </ul>
+                                </section>
+                            </div>
+                        </CardContent>
+                    </Card>
                     <Card className="w-full rounded-none">
                         <CardContent className="p-6">
                             <div className="flex flex-col items-center mb-4">
                                 <div className="w-20 h-20 bg-gray-200 flex items-center justify-center mb-2">
                                     <span className="text-gray-500 font-bold">LOGO</span>
                                 </div>
-                                <h2 className="text-2xl font-bold">THALES</h2>
+                                <h2 className="text-2xl font-bold">{job.company}</h2>
                             </div>
                             <p className="text-center text-lg mb-6">Cette offre vous tente ?</p>
                             <div className="flex justify-center space-x-4">
