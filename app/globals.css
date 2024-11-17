@@ -95,3 +95,117 @@ body {
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
+
+/* Styles pour les boules */
+.ball {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(45deg, #00aaff, #0088cc);
+  border-radius: 50%;
+  z-index: 10;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+  filter: drop-shadow(0 0 10px rgba(0, 170, 255, 0.5));
+}
+
+.ball-top {
+  top: -10px;
+  left: 32px;
+}
+
+.ball-bottom {
+  bottom: -10px;
+  left: 32px;
+}
+
+.ball.active-top {
+  opacity: 1;
+  animation: moveTopBall 3s linear infinite;
+}
+
+.ball.active-bottom {
+  opacity: 1;
+  animation: moveBottomBall 3s linear infinite;
+}
+
+@keyframes moveTopBall {
+  0% {
+    transform: translateX(0) scale(1);
+    top: -10px;
+  }
+  20% {
+    transform: translateX(calc(100% - 20px)) scale(1.5);
+    top: 50%;
+  }
+  40% {
+    transform: translateX(calc(200% - 40px)) scale(1);
+    bottom: -10px;
+    top: auto;
+  }
+  60% {
+    transform: translateX(calc(300% - 60px)) scale(1.5);
+    bottom: 50%;
+    top: auto;
+  }
+  80% {
+    transform: translateX(0) scale(1);
+    top: -10px;
+    bottom: auto;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    top: -10px;
+  }
+}
+
+@keyframes moveBottomBall {
+  0% {
+    transform: translateX(0) scale(1);
+    bottom: -10px;
+  }
+  20% {
+    transform: translateX(calc(100% - 20px)) scale(1.5);
+    bottom: 50%;
+  }
+  40% {
+    transform: translateX(calc(200% - 40px)) scale(1);
+    top: -10px;
+    bottom: auto;
+  }
+  60% {
+    transform: translateX(calc(300% - 60px)) scale(1.5);
+    top: 50%;
+    bottom: auto;
+  }
+  80% {
+    transform: translateX(0) scale(1);
+    bottom: -10px;
+    top: auto;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    bottom: -10px;
+  }
+}
+
+/* Style pour la carte active */
+.card-active {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  transition: all 0.3s ease-in-out;
+  animation: cardGlow 1.5s ease-in-out infinite;
+}
+
+/* Ajout d'un effet de lueur lors du passage des boules */
+@keyframes cardGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 170, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 170, 255, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(0, 170, 255, 0.2);
+  }
+}

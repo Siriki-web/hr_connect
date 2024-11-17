@@ -12,7 +12,7 @@ export function LoginPageComponent() {
   const [showPassword, setShowPassword] = useState(false)
 
   return (
-    <div className="min-h-screen bg-[#F2F4F5] flex flex-col">
+    <div className="min-h-screen bg-gradient-to-r from-teal-500 to-black-300 flex flex-col">
       <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-center">
           <img src="/placeholder.svg" alt="TalentHUb Logo" className="h-8" />

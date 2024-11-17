@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -11,6 +11,7 @@ import { loadFull } from "tsparticles";
 import type { Engine } from "tsparticles-engine";
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+
 
 // Flux de navigation :
 // 1. L'utilisateur clique sur un plan ou le bouton d'essai gratuit
@@ -68,6 +69,55 @@ export function LandingPageComponent() {
 	const particlesInit = async (engine: Engine) => {
 		await loadFull(engine);
 	};
+
+	const [displayText, setDisplayText] = useState('');
+	const [currentTextIndex, setCurrentTextIndex] = useState(0);
+	const [isTyping, setIsTyping] = useState(true);
+
+	const textOptions = [
+		"Révolutionnez votre processus de",
+		"Optimisez vos performances de",
+		"Transformez l'expérience de",
+		"Accélérez votre succès en"
+	];
+
+	useEffect(() => {
+		let timeout: NodeJS.Timeout;
+
+		if (isTyping) {
+			const currentFullText = textOptions[currentTextIndex];
+			if (displayText.length < currentFullText.length) {
+				timeout = setTimeout(() => {
+					setDisplayText(currentFullText.slice(0, displayText.length + 1));
+				}, 100);
+			} else {
+				timeout = setTimeout(() => {
+					setIsTyping(false);
+				}, 2000);
+			}
+		} else {
+			if (displayText.length > 0) {
+				timeout = setTimeout(() => {
+					setDisplayText(displayText.slice(0, -1));
+				}, 50);
+			} else {
+				setCurrentTextIndex((prev) => (prev + 1) % textOptions.length);
+				setIsTyping(true);
+			}
+		}
+
+		return () => clearTimeout(timeout);
+	}, [displayText, isTyping, currentTextIndex]);
+
+	const [activeBall, setActiveBall] = useState(0);
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setActiveBall((prev) => (prev + 1) % 4);
+		}, 3000);
+
+		return () => clearInterval(interval);
+	}, []);
 
 	return (
 		<div className="flex flex-col min-h-screen">
@@ -153,7 +203,10 @@ export function LandingPageComponent() {
 					/>
 					<div className="container mx-auto px-4 text-center relative z-10">
 						<h1 className="text-4xl md:text-5xl font-bold mb-10 text-white">
-							Révolutionnez votre processus de recrutement avec l'intelligence artificielle
+							<span className="inline-block min-w-[300px]">{displayText}</span> recrutement avec <span className="bg-gradient-to-r from-blue-500 to-[#ffaa00] bg-clip-text text-transparent">
+								l'intelligence artificielle
+							</span>
+
 						</h1>
 						<p className="text-xl mb-12 text-white">
 							Gagnez du temps, trouvez les meilleurs talents et améliorez votre productivité grâce à une solution automatisée et intelligente.
@@ -242,22 +295,6 @@ export function LandingPageComponent() {
 					</div>
 				</section>
 
-
-
-				{/* Testimonials */}
-				{/*<section className="py-20 bg-[#f9fafb]">
-					<div className="container mx-auto px-4">
-						<h2 className="text-4xl font-bold text-center mb-10 text-gray-800">Des résultats impressionnants pour nos clients</h2>
-						<div className="flex justify-center">
-							<Card className="w-full max-w-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-								<CardContent className="p-8 bg-white rounded-lg">
-									<p className="italic text-lg">{testimonials[currentTestimonialIndex].quote}</p>
-									<p className="text-right font-bold mt-4">— {testimonials[currentTestimonialIndex].company}</p>
-								</CardContent>
-							</Card>
-						</div>
-					</div>
-				</section>*/}
 				<section className="bg-gray-50 py-12">
 					<div className="max-w-7xl mx-auto text-center">
 						<h2 className="text-3xl font-extrabold text-gray-900">What Our Clients Say</h2>
@@ -330,28 +367,35 @@ export function LandingPageComponent() {
 
 
 				{/* Competitive Advantages */}
-				<section className="bg-[#f3f3f3] py-16 px-4">
+				<section className="bg-[#f3f3f3] py-16 px-4 relative">
 					<div className="container mx-auto px-4">
-						<h2 className="text-4xl font-bold text-center mb-12 text-gray-800">Les raisons de nous choisir</h2>
-						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+						<h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
+							Les raisons de nous choisir
+						</h2>
+						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+							<div className={`ball ball-top ${activeBall === 0 ? 'active-top' : ''}`} />
+							<div className={`ball ball-bottom ${activeBall === 0 ? 'active-bottom' : ''}`} />
+							
 							{raisons.map((raison, index) => (
 								<Card
 									key={index}
-									className="hover:shadow-lg transition-shadow duration-300 rounded-full w-64 h-64 flex flex-col items-center justify-center bg-white shadow-md"
+									className={`hover:shadow-lg transition-shadow duration-300 rounded-full w-64 h-64 flex flex-col items-center justify-center bg-white shadow-md relative ${
+										index === activeBall ? 'card-active' : ''
+									}`}
 								>
 									<CardHeader>
 										<raison.icon className="w-8 h-8 text-blue-500 mx-auto mb-0" />
 									</CardHeader>
 									<CardContent className="p-4 text-center">
-										<CardTitle className="text-xl font-semibold mb-2 mt-0">{raison.title}</CardTitle>
+										<CardTitle className="text-xl font-semibold mb-2 mt-0">
+											{raison.title}
+										</CardTitle>
 										<p className="text-gray-600 text-sm mt-0">{raison.description}</p>
 									</CardContent>
 								</Card>
-
 							))}
 						</div>
 					</div>
-
 				</section>
 
 
