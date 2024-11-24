@@ -203,7 +203,7 @@ export function LandingPageComponent() {
 					/>
 					<div className="container mx-auto px-4 text-center relative z-10">
 						<h1 className="text-4xl md:text-5xl font-bold mb-10 text-white">
-							<span className="inline-block min-w-[300px]">{displayText}</span> recrutement avec <span className="bg-gradient-to-r from-blue-500 to-[#ffaa00] bg-clip-text text-transparent">
+							<span className="inline-block min-w-[300px]">{displayText}</span> recrutement avec <span className="bg-gradient-to-r from-yellow-300 to-purple-600 bg-clip-text text-transparent">
 								l'intelligence artificielle
 							</span>
 
@@ -363,7 +363,6 @@ export function LandingPageComponent() {
 						</div>
 					</div>
 				</section>
-
 
 
 				{/* Competitive Advantages */}
