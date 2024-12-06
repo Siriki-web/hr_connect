@@ -61,19 +61,19 @@ export function HrDashboard() {
                 <nav className="mt-6">
                     <a href="#" className="flex items-center px-4 py-2 text-gray-700 bg-gray-100">
                         <PieChart className="w-5 h-5 mr-2" />
-                        Overview
+                        Vue d'ensemble
                     </a>
                     <Link href="/job-postings" className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
                         <FileText className="w-5 h-5 mr-2" />
-                        Job Postings
+                        Offres d'emploi
                     </Link>
                     <a href="#" className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
                         <Users className="w-5 h-5 mr-2" />
-                        Candidates
+                        Candidats
                     </a>
                     <a href="#" className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
                         <Settings className="w-5 h-5 mr-2" />
-                        Settings
+                        Paramètres
                     </a>
                 </nav>
             </aside>
@@ -83,7 +83,7 @@ export function HrDashboard() {
                 {/* Header */}
                 <header className="bg-white shadow-sm">
                     <div className="flex items-center justify-between px-6 py-4">
-                        <h2 className="text-xl font-semibold text-gray-800">Recruitment Overview</h2>
+                        <h2 className="text-xl font-semibold text-gray-800">Aperçu du recrutement</h2>
                         <div className="flex items-center">
                             <Button variant="ghost" size="icon">
                                 <Bell className="h-5 w-5" />
@@ -105,20 +105,20 @@ export function HrDashboard() {
                         {/* Job Overview Card */}
                         <Card>
                             <CardHeader>
-                                <CardTitle>Job Overview</CardTitle>
+                                <CardTitle>Aperçu des postes</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <div className="space-y-4">
                                     <div className="flex justify-between">
-                                        <span>Open Positions</span>
+                                        <span>Postes ouverts</span>
                                         <span className="font-semibold">12</span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span>Total Applications</span>
+                                        <span>Candidatures totales</span>
                                         <span className="font-semibold">143</span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span>Interviews Scheduled</span>
+                                        <span>Entretiens programmés</span>
                                         <span className="font-semibold">28</span>
                                     </div>
                                 </div>
@@ -128,27 +128,27 @@ export function HrDashboard() {
                         {/* Application Progress Card */}
                         <Card>
                             <CardHeader>
-                                <CardTitle>Application Progress</CardTitle>
+                                <CardTitle>Progression des candidatures</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <div className="space-y-4">
                                     <div>
                                         <div className="flex justify-between mb-1">
-                                            <span>AI Screening</span>
+                                            <span>Présélection IA</span>
                                             <span>75%</span>
                                         </div>
                                         <Progress value={75} />
                                     </div>
                                     <div>
                                         <div className="flex justify-between mb-1">
-                                            <span>Phone Interviews</span>
+                                            <span>Entretiens téléphoniques</span>
                                             <span>50%</span>
                                         </div>
                                         <Progress value={50} />
                                     </div>
                                     <div>
                                         <div className="flex justify-between mb-1">
-                                            <span>Final Selection</span>
+                                            <span>Sélection finale</span>
                                             <span>25%</span>
                                         </div>
                                         <Progress value={25} />
@@ -160,20 +160,20 @@ export function HrDashboard() {
                         {/* AI Insights Card */}
                         <Card>
                             <CardHeader>
-                                <CardTitle>AI Insights</CardTitle>
+                                <CardTitle>Analyses IA</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <div className="space-y-4">
                                     <div className="flex justify-between">
-                                        <span>AI-Screened Resumes</span>
+                                        <span>CV analysés par l'IA</span>
                                         <span className="font-semibold">98</span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span>AI Interview Conducted</span>
+                                        <span>Entretiens IA réalisés</span>
                                         <span className="font-semibold">45</span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span>AI Recommended Candidates</span>
+                                        <span>Candidats recommandés par l'IA</span>
                                         <span className="font-semibold">15</span>
                                     </div>
                                 </div>
@@ -184,14 +184,14 @@ export function HrDashboard() {
                     {/* Job Offer Management Section */}
                     <Card className="mt-6">
                         <CardHeader>
-                            <CardTitle>Job Offer Management</CardTitle>
+                            <CardTitle>Gestion des offres d'emploi</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <div className="flex justify-between items-center mb-4">
                                 <Dialog>
                                     <DialogTrigger asChild>
                                         <Button>
-                                            <Plus className="mr-2 h-4 w-4" /> Create Job Offer
+                                            <Plus className="mr-2 h-4 w-4" /> Créer une offre
                                         </Button>
                                     </DialogTrigger>
                                     <DialogContent className="sm:max-w-[625px]">
@@ -215,9 +215,9 @@ export function HrDashboard() {
                                                             name="jobTitle"
                                                             render={({ field }) => (
                                                                 <FormItem>
-                                                                    <FormLabel>Job Title*</FormLabel>
+                                                                    <FormLabel>Titre du poste*</FormLabel>
                                                                     <FormControl>
-                                                                        <Input placeholder="e.g Senior Frontend Developer" {...field} />
+                                                                        <Input placeholder="ex: Développeur Frontend Senior" {...field} />
                                                                     </FormControl>
                                                                     <FormMessage />
                                                                 </FormItem>
@@ -229,18 +229,18 @@ export function HrDashboard() {
                                                                 name="department"
                                                                 render={({ field }) => (
                                                                     <FormItem>
-                                                                        <FormLabel>Department*</FormLabel>
+                                                                        <FormLabel>Département*</FormLabel>
                                                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                                             <FormControl>
                                                                                 <SelectTrigger>
-                                                                                    <SelectValue placeholder="Select department" />
+                                                                                    <SelectValue placeholder="Sélectionner un département" />
                                                                                 </SelectTrigger>
                                                                             </FormControl>
                                                                             <SelectContent>
-                                                                                <SelectItem value="engineering">Engineering</SelectItem>
+                                                                                <SelectItem value="engineering">Ingénierie</SelectItem>
                                                                                 <SelectItem value="design">Design</SelectItem>
                                                                                 <SelectItem value="marketing">Marketing</SelectItem>
-                                                                                <SelectItem value="sales">Sales</SelectItem>
+                                                                                <SelectItem value="sales">Ventes</SelectItem>
                                                                             </SelectContent>
                                                                         </Select>
                                                                         <FormMessage />
@@ -267,18 +267,18 @@ export function HrDashboard() {
                                                                 name="employmentType"
                                                                 render={({ field }) => (
                                                                     <FormItem>
-                                                                        <FormLabel>Employment Type*</FormLabel>
+                                                                        <FormLabel>Type d'emploi*</FormLabel>
                                                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                                             <FormControl>
                                                                                 <SelectTrigger>
-                                                                                    <SelectValue placeholder="Select type" />
+                                                                                    <SelectValue placeholder="Sélectionner un type" />
                                                                                 </SelectTrigger>
                                                                             </FormControl>
                                                                             <SelectContent>
-                                                                                <SelectItem value="full-time">Full-time</SelectItem>
-                                                                                <SelectItem value="part-time">Part-time</SelectItem>
-                                                                                <SelectItem value="contract">Contract</SelectItem>
-                                                                                <SelectItem value="internship">Internship</SelectItem>
+                                                                                <SelectItem value="full-time">Temps plein</SelectItem>
+                                                                                <SelectItem value="part-time">Temps partiel</SelectItem>
+                                                                                <SelectItem value="contract">Contrat</SelectItem>
+                                                                                <SelectItem value="internship">Stage</SelectItem>
                                                                             </SelectContent>
                                                                         </Select>
                                                                         <FormMessage />
@@ -290,17 +290,17 @@ export function HrDashboard() {
                                                                 name="experienceLevel"
                                                                 render={({ field }) => (
                                                                     <FormItem>
-                                                                        <FormLabel>Experience Level*</FormLabel>
+                                                                        <FormLabel>Niveau d'expérience*</FormLabel>
                                                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                                             <FormControl>
                                                                                 <SelectTrigger>
-                                                                                    <SelectValue placeholder="Select level" />
+                                                                                    <SelectValue placeholder="Sélectionner un niveau" />
                                                                                 </SelectTrigger>
                                                                             </FormControl>
                                                                             <SelectContent>
-                                                                                <SelectItem value="entry">Entry Level</SelectItem>
-                                                                                <SelectItem value="mid">Mid Level</SelectItem>
-                                                                                <SelectItem value="senior">Senior Level</SelectItem>
+                                                                                <SelectItem value="entry">Débutant</SelectItem>
+                                                                                <SelectItem value="mid">Intermédiaire</SelectItem>
+                                                                                <SelectItem value="senior">Senior</SelectItem>
                                                                                 <SelectItem value="lead">Lead</SelectItem>
                                                                             </SelectContent>
                                                                         </Select>
@@ -314,9 +314,9 @@ export function HrDashboard() {
                                                             name="skills"
                                                             render={({ field }) => (
                                                                 <FormItem>
-                                                                    <FormLabel>Skills & Technologies</FormLabel>
+                                                                    <FormLabel>Compétences & Technologies</FormLabel>
                                                                     <FormControl>
-                                                                        <Input placeholder="Type a skill and press Enter" {...field} />
+                                                                        <Input placeholder="Saisissez une compétence et appuyez sur Entrée" {...field} />
                                                                     </FormControl>
                                                                     <FormMessage />
                                                                 </FormItem>
@@ -327,10 +327,10 @@ export function HrDashboard() {
                                                             name="jobDescription"
                                                             render={({ field }) => (
                                                                 <FormItem>
-                                                                    <FormLabel>Job Description*</FormLabel>
+                                                                    <FormLabel>Description du poste*</FormLabel>
                                                                     <FormControl>
                                                                         <Textarea
-                                                                            placeholder="Describe the role and responsibilities..."
+                                                                            placeholder="Décrivez le rôle et les responsabilités..."
                                                                             className="min-h-[120px]"
                                                                             {...field}
                                                                         />
@@ -341,10 +341,10 @@ export function HrDashboard() {
                                                         />
                                                         <div className="space-y-4">
                                                             <div className="flex items-center justify-between">
-                                                                <FormLabel>Requirements</FormLabel>
+                                                                <FormLabel>Exigences</FormLabel>
                                                                 <Button type="button" variant="outline" size="sm" onClick={() => append({ requirement: "" })}>
                                                                     <Plus className="h-4 w-4 mr-2" />
-                                                                    Add Requirement
+                                                                    Ajouter une exigence
                                                                 </Button>
                                                             </div>
                                                             {fields.map((field, index) => (
@@ -355,7 +355,7 @@ export function HrDashboard() {
                                                                         render={({ field }) => (
                                                                             <FormItem className="flex-1">
                                                                                 <FormControl>
-                                                                                    <Input placeholder="Add a requirement" {...field} />
+                                                                                    <Input placeholder="Ajouter une exigence" {...field} />
                                                                                 </FormControl>
                                                                                 <FormMessage />
                                                                             </FormItem>
@@ -377,9 +377,9 @@ export function HrDashboard() {
                                                     </CardContent>
                                                     <CardFooter className="gap-4">
                                                         <Button type="button" variant="outline">
-                                                            Save as Draft
+                                                            Enregistrer comme brouillon
                                                         </Button>
-                                                        <Button type="submit">Publish Job</Button>
+                                                        <Button type="submit">Publier l'offre</Button>
                                                     </CardFooter>
                                                 </form>
                                             </Form>
@@ -392,21 +392,21 @@ export function HrDashboard() {
                                     </DialogContent>
                                 </Dialog>
                                 <Button variant="outline">
-                                    <FileText className="mr-2 h-4 w-4" /> View Drafts
+                                    <FileText className="mr-2 h-4 w-4" /> Voir les brouillons
                                 </Button>
                             </div>
                             <Tabs defaultValue="active">
                                 <TabsList>
-                                    <TabsTrigger value="active">Active Job Offers</TabsTrigger>
-                                    <TabsTrigger value="drafts">Drafts</TabsTrigger>
+                                    <TabsTrigger value="active">Offres actives</TabsTrigger>
+                                    <TabsTrigger value="drafts">Brouillons</TabsTrigger>
                                 </TabsList>
                                 <TabsContent value="active">
                                     <table className="w-full">
                                         <thead>
                                             <tr className="text-left">
-                                                <th className="pb-2">Job Title</th>
-                                                <th className="pb-2">Published Date</th>
-                                                <th className="pb-2">Applications</th>
+                                                <th className="pb-2">Titre du poste</th>
+                                                <th className="pb-2">Date de publication</th>
+                                                <th className="pb-2">Candidatures</th>
                                                 <th className="pb-2">Actions</th>
                                             </tr>
                                         </thead>
@@ -444,8 +444,8 @@ export function HrDashboard() {
                                     <table className="w-full">
                                         <thead>
                                             <tr className="text-left">
-                                                <th className="pb-2">Job Title</th>
-                                                <th className="pb-2">Last Modified</th>
+                                                <th className="pb-2">Titre du poste</th>
+                                                <th className="pb-2">Dernière modification</th>
                                                 <th className="pb-2">Actions</th>
                                             </tr>
                                         </thead>
@@ -490,43 +490,43 @@ export function HrDashboard() {
                     {/* Tabs for detailed information */}
                     <Tabs defaultValue="candidates" className="mt-6">
                         <TabsList>
-                            <TabsTrigger value="candidates">Top Candidates</TabsTrigger>
-                            <TabsTrigger value="jobs">Job Performance</TabsTrigger>
-                            <TabsTrigger value="reports">Reports</TabsTrigger>
+                            <TabsTrigger value="candidates">Meilleurs candidats</TabsTrigger>
+                            <TabsTrigger value="jobs">Performance des offres</TabsTrigger>
+                            <TabsTrigger value="reports">Rapports</TabsTrigger>
                         </TabsList>
                         <TabsContent value="candidates">
                             <Card>
                                 <CardHeader>
-                                    <CardTitle>Top Candidates</CardTitle>
+                                    <CardTitle>Meilleurs candidats</CardTitle>
                                 </CardHeader>
                                 <CardContent>
                                     <table className="w-full">
                                         <thead>
                                             <tr className="text-left">
-                                                <th className="pb-2">Name</th>
-                                                <th className="pb-2">Position</th>
-                                                <th className="pb-2">AI Score</th>
-                                                <th className="pb-2">Status</th>
+                                                <th className="pb-2">Nom</th>
+                                                <th className="pb-2">Poste</th>
+                                                <th className="pb-2">Score IA</th>
+                                                <th className="pb-2">Statut</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td className="py-2">John Doe</td>
-                                                <td>Software Engineer</td>
+                                                <td>Développeur logiciel</td>
                                                 <td>92%</td>
                                                 <td>
                                                     <span className="px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">
-                                                        Recommended
+                                                        Recommandé
                                                     </span>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td className="py-2">Jane Smith</td>
-                                                <td>Product Manager</td>
+                                                <td>Chef de produit</td>
                                                 <td>88%</td>
                                                 <td>
                                                     <span className="px-2 py-1 text-xs font-semibold text-yellow-800 bg-yellow-100 rounded-full">
-                                                        Interview
+                                                        Entretien
                                                     </span>
                                                 </td>
                                             </tr>
@@ -538,36 +538,36 @@ export function HrDashboard() {
                         <TabsContent value="jobs">
                             <Card>
                                 <CardHeader>
-                                    <CardTitle>Job Performance</CardTitle>
+                                    <CardTitle>Performance des offres</CardTitle>
                                 </CardHeader>
                                 <CardContent>
                                     <table className="w-full">
                                         <thead>
                                             <tr className="text-left">
-                                                <th className="pb-2">Job Title</th>
-                                                <th className="pb-2">Views</th>
-                                                <th className="pb-2">Applications</th>
-                                                <th className="pb-2">Status</th>
+                                                <th className="pb-2">Titre du poste</th>
+                                                <th className="pb-2">Vues</th>
+                                                <th className="pb-2">Candidatures</th>
+                                                <th className="pb-2">Statut</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td className="py-2">Senior Developer</td>
+                                                <td className="py-2">Développeur Senior</td>
                                                 <td>1,245</td>
                                                 <td>78</td>
                                                 <td>
                                                     <span className="px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">
-                                                        Open
+                                                        Ouvert
                                                     </span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td className="py-2">UX Designer</td>
+                                                <td className="py-2">Designer UX</td>
                                                 <td>980</td>
                                                 <td>45</td>
                                                 <td>
                                                     <span className="px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">
-                                                        Closed
+                                                        Fermé
                                                     </span>
                                                 </td>
                                             </tr>
@@ -579,13 +579,13 @@ export function HrDashboard() {
                         <TabsContent value="reports">
                             <Card>
                                 <CardHeader>
-                                    <CardTitle>Recruitment Reports</CardTitle>
+                                    <CardTitle>Rapports de recrutement</CardTitle>
                                 </CardHeader>
                                 <CardContent>
                                     <div className="space-y-4">
-                                        <Button>Generate Performance Report</Button>
-                                        <Button>Export Candidate Data</Button>
-                                        <Button>AI Insights Summary</Button>
+                                        <Button>Générer rapport de performance</Button>
+                                        <Button>Exporter données des candidats</Button>
+                                        <Button>Résumé des analyses IA</Button>
                                     </div>
                                 </CardContent>
                             </Card>

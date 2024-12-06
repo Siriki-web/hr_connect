@@ -11,6 +11,9 @@ import { loadFull } from "tsparticles";
 import type { Engine } from "tsparticles-engine";
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { LoginPageComponent } from './login-page'
+import { SignupPageComponent } from './signup-page'
+import { Dialog, DialogContent } from "@/components/ui/dialog"
 
 
 // Flux de navigation :
@@ -119,9 +122,42 @@ export function LandingPageComponent() {
 		return () => clearInterval(interval);
 	}, []);
 
+	const [showLoginModal, setShowLoginModal] = useState(false)
+	const [showSignupModal, setShowSignupModal] = useState(false)
+
+	const openLoginModal = () => {
+		setShowSignupModal(false)
+		setShowLoginModal(true)
+	}
+
+	const openSignupModal = () => {
+		setShowLoginModal(false)
+		setShowSignupModal(true)
+	}
+
 	return (
 		<div className="flex flex-col min-h-screen">
 			<Header />
+
+			<Dialog open={showLoginModal} onOpenChange={setShowLoginModal}>
+				<DialogContent className="sm:max-w-[500px]">
+					<LoginPageComponent 
+						onClose={() => setShowLoginModal(false)} 
+						onSignupClick={openSignupModal}
+					/>
+				</DialogContent>
+			</Dialog>
+
+			<Dialog open={showSignupModal} onOpenChange={setShowSignupModal}>
+				<DialogContent className="sm:max-w-[800px]">
+					<SignupPageComponent 
+						onClose={() => setShowSignupModal(false)}
+						onLoginClick={openLoginModal}
+					/>
+				</DialogContent>
+			</Dialog>
+
+			
 
 			<main className="flex-grow">
 				{/* Hero Section */}
@@ -295,10 +331,11 @@ export function LandingPageComponent() {
 					</div>
 				</section>
 
+				{/* What Our Clients Say */}
 				<section className="bg-gray-50 py-12">
 					<div className="max-w-7xl mx-auto text-center">
-						<h2 className="text-3xl font-extrabold text-gray-900">What Our Clients Say</h2>
-						<p className="text-lg text-gray-600 mt-2">Real feedback from our trusted customers</p>
+						<h2 className="text-3xl font-extrabold text-gray-900">Ce que disent nos clients</h2>
+						<p className="text-lg text-gray-600 mt-2">Des retours authentiques de nos clients de confiance</p>
 
 						<div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 							<div className="bg-white shadow-lg rounded-lg p-6">
@@ -315,9 +352,9 @@ export function LandingPageComponent() {
 										/>
 									</svg>
 									<blockquote className="text-lg font-semibold italic text-gray-800 leading-relaxed">
-										"This product completely transformed our recruitment process. We’ve seen tremendous improvement in candidate quality!"
+										"Ce produit a complètement transformé notre processus de recrutement. Nous avons constaté une amélioration considérable dans la qualité des candidats !"
 									</blockquote>
-									<p className="mt-4 text-base font-medium text-gray-900">— John Doe, HR Manager</p>
+									<p className="mt-4 text-base font-medium text-gray-900">— Jean Dupont, Responsable RH</p>
 								</div>
 							</div>
 
@@ -335,9 +372,9 @@ export function LandingPageComponent() {
 										/>
 									</svg>
 									<blockquote className="text-lg font-semibold italic text-gray-800 leading-relaxed">
-										"A game changer for our hiring process. The automation saved us hours each week!"
+										"Un véritable changement pour notre processus d'embauche. L'automatisation nous fait gagner des heures chaque semaine !"
 									</blockquote>
-									<p className="mt-4 text-base font-medium text-gray-900">— Jane Smith, Tech Lead</p>
+									<p className="mt-4 text-base font-medium text-gray-900">— Marie Martin, Responsable Technique</p>
 								</div>
 							</div>
 
@@ -355,9 +392,9 @@ export function LandingPageComponent() {
 										/>
 									</svg>
 									<blockquote className="text-lg font-semibold italic text-gray-800 leading-relaxed">
-										"The best investment we made for scaling our team!"
+										"Le meilleur investissement que nous ayons fait pour développer notre équipe !"
 									</blockquote>
-									<p className="mt-4 text-base font-medium text-gray-900">— Alice Wong, Operations Director</p>
+									<p className="mt-4 text-base font-medium text-gray-900">— Sophie Dubois, Directrice des Opérations</p>
 								</div>
 							</div>
 						</div>

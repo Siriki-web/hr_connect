@@ -1,10 +1,28 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { BriefcaseIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { LoginPageComponent } from './login-page'
+import { SignupPageComponent } from './signup-page'
 
 export function Header() {
     const router = useRouter();
+    const [showLoginModal, setShowLoginModal] = useState(false)
+    const [showSignupModal, setShowSignupModal] = useState(false)
+
+    const openLoginModal = () => {
+        setShowSignupModal(false)
+        setShowLoginModal(true)
+    }
+
+    const openSignupModal = () => {
+        setShowLoginModal(false)
+        setShowSignupModal(true)
+    }
 
     return (
         <header className="bg-white shadow-sm">
@@ -21,16 +39,29 @@ export function Header() {
                     <Link href="/contact" className="text-gray-600 hover:text-gray-900">Contact</Link>
                 </nav>
                 <div className="flex space-x-2">
-                    <Button variant="outline" asChild>
-                        <Link href="/espace-candidat">Espace Candidat</Link>
-                    </Button>
-                    <Button
-                        variant="default"
-                        onClick={() => router.push('/login')}
-                    >
+                    <Button onClick={() => setShowLoginModal(true)}>
                         Espace Recruteur
                     </Button>
                 </div>
+
+                {/* Modales */}
+                <Dialog open={showLoginModal} onOpenChange={setShowLoginModal}>
+                    <DialogContent className="sm:max-w-[500px]">
+                        <LoginPageComponent 
+                            onClose={() => setShowLoginModal(false)} 
+                            onSignupClick={openSignupModal}
+                        />
+                    </DialogContent>
+                </Dialog>
+
+                <Dialog open={showSignupModal} onOpenChange={setShowSignupModal}>
+                    <DialogContent className="sm:max-w-[800px]">
+                        <SignupPageComponent 
+                            onClose={() => setShowSignupModal(false)}
+                            onLoginClick={openLoginModal}
+                        />
+                    </DialogContent>
+                </Dialog>
             </div>
         </header>
     )

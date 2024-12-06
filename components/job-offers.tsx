@@ -16,11 +16,21 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Label } from "@/components/ui/label"
 import { useRouter } from 'next/navigation'
 
-// Update the Job type definition to include the sector property
 type Job = {
-    // ... other properties ...
-    sector: string; // Add this line
-    // ... other properties ...
+    id: number;
+    title: string;
+    company: string;
+    description: string;
+    location: string;
+    type: string;
+    remote: string;
+    profession: string;
+    sector: string;
+    image: string;
+    logo: string;
+    activelyRecruiting?: boolean;
+    sponsored?: boolean;
+    postedTime?: string;
 }
 
 export function JobOffersComponent() {
@@ -166,18 +176,23 @@ export function JobOffersComponent() {
             </header>
             <div className="w-full bg-gradient-to-r from-[#00aaff] to-[#f0f4f8]">
                 <div className="py-8">
-                    <div className="container mx-auto px-4 text-center">
-                        <h1 className="text-[1.3rem] font-bold">
+                    <div className="container mx-auto px-4">
+                        <h1 className="text-[1.3rem] font-bold flex justify-center items-center">
                             Trouvez le job avec{' '}
                             <span className="relative inline-block align-middle">
                                 <span
-                                    className={`inline-block px-2 py-1 rounded-none transition-opacity transition-transform duration-500 ease-in-out opacity-100 whitespace-nowrap ${textVariants[currentTextIndex].bgColor}`}
-                                    style={{ position: "absolute", top: -22, left: 0 }}
-                                    key={currentTextIndex}
+                                    className="invisible inline-block px-2 py-1"
+                                >
+                                    {textVariants.reduce((a, b) => (a.text.length > b.text.length ? a : b)).text}
+                                </span>
+                                <span
+                                    className={`absolute inline-block px-2 py-1 transition-opacity transition-transform duration-500 ease-in-out opacity-100 whitespace-nowrap ${textVariants[currentTextIndex].bgColor}`}
+                                    style={{ top: -2, left: 5 }}
                                 >
                                     {textVariants[currentTextIndex].text}
                                 </span>
                             </span>
+
                         </h1>
                     </div>
                 </div>

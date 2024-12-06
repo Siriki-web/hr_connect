@@ -4,99 +4,181 @@ import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { EyeIcon, EyeOffIcon } from 'lucide-react'
 import Link from 'next/link'
+import toast from 'react-hot-toast'
+import { useRouter } from 'next/navigation'
 
-export function LoginPageComponent() {
-  const [showPassword, setShowPassword] = useState(false)
+interface LoginPageProps {
+    onClose: () => void;
+    onSignupClick: () => void;
+}
 
-  return (
-    <div className="min-h-screen bg-gradient-to-r from-teal-500 to-black-300 flex flex-col">
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-center">
-          <img src="/placeholder.svg" alt="TalentHUb Logo" className="h-8" />
-        </div>
-      </header>
+interface LoginResponse {
+    user: {
+        firstName: string;
+        lastName: string;
+        email: string;
+    };
+    token: string;
+}
 
-      <main className="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8">
-        <Card className="w-full max-w-md">
-          <CardContent className="pt-6">
-            <h2 className="text-2xl font-bold text-center mb-6">Se connecter sur TalentHub</h2>
-            <form className="space-y-6">
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Email
-                </label>
-                <Input id="email" name="email" type="email" required className="mt-1 h-12 rounded-none w-full" />
-              </div>
+export function LoginPageComponent({ onClose, onSignupClick }: LoginPageProps) {
+    const [showPassword, setShowPassword] = useState(false)
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
+    });
+    const [errors, setErrors] = useState<{ [key: string]: string }>({});
+    const router = useRouter();
 
-              <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                  Mot de passe
-                </label>
-                <div className="mt-1 relative">
-                  <Input
-                    id="password"
-                    name="password"
-                    type={showPassword ? "text" : "password"}
-                    required
-                   className="mt-1 h-12 rounded-none w-full"
-                  />
-                  <button
-                    type="button"
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    {showPassword ? (
-                      <EyeOffIcon className="h-5 w-5 text-gray-400" />
-                    ) : (
-                      <EyeIcon className="h-5 w-5 text-gray-400" />
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const validateForm = () => {
+        const newErrors: { [key: string]: string } = {};
+        if (!formData.email) newErrors.email = 'Email est requis';
+        if (!formData.email.includes('@')) newErrors.email = 'Format email invalide';
+        if (!formData.password) newErrors.password = 'Mot de passe requis';
+        
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        
+        if (!validateForm()) {
+            toast.error("Veuillez corriger les erreurs");
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:3001/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: formData.email,
+                    password: formData.password,
+                }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Échec de la connexion');
+            }
+
+            const data: LoginResponse = await response.json();
+            
+            // Sauvegarder le token dans le localStorage
+            localStorage.setItem('token', data.token);
+            
+            // Afficher le message de succès
+            toast.success(`Bienvenue ${data.user.firstName} ${data.user.lastName} !`);
+            
+            // Fermer le modal de connexion
+            onClose();
+            
+            // Rediriger vers le dashboard
+            router.push('/hr-dashboard');
+
+        } catch (error) {
+            console.error('Erreur de connexion:', error);
+            toast.error(error instanceof Error ? error.message : 'Erreur lors de la connexion');
+        }
+    };
+
+    return (
+        <div className="py-6">
+            <h2 className="text-2xl font-bold text-center mb-6">Bienvenue !</h2>
+            <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                        Email
+                    </label>
+                    <Input 
+                        id="workEmail" 
+                        name="workEmail" 
+                        type="email" 
+                        value={formData.email}
+                        onChange={handleChange}
+                        className={`mt-1 h-10 rounded-md w-full bg-transparent ${errors.email ? 'border-red-500' : ''}`}
+                    />
+                    {errors.email && (
+                        <p className="text-red-500 text-sm mt-1">{errors.email}</p>
                     )}
-                  </button>
                 </div>
-              </div>
 
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <Checkbox id="remember-me" />
-                  <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                    Remember me
-                  </label>
+                <div>
+                    <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                        Mot de passe
+                    </label>
+                    <div className="mt-1 relative">
+                        <Input
+                            id="password"
+                            name="password"
+                            type={showPassword ? "text" : "password"}
+                            value={formData.password}
+                            onChange={handleChange}
+                            className={`h-10 rounded-md w-full bg-transparent ${errors.password ? 'border-red-500' : ''}`}
+                        />
+                        <button
+                            type="button"
+                            className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
+                            {showPassword ? (
+                                <EyeOffIcon className="h-5 w-5 text-gray-400" />
+                            ) : (
+                                <EyeIcon className="h-5 w-5 text-gray-400" />
+                            )}
+                        </button>
+                    </div>
+                    {errors.password && (
+                        <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+                    )}
                 </div>
-                <div className="text-sm">
-                  <Link href="/forgot-password" className="font-medium text-teal-600 hover:text-teal-500">
-                    Mot de passe oublié?
-                  </Link>
-                </div>
-              </div>
 
-              <Button type="submit" className="w-full h-12 rounded-70 font-bold bg-teal-600 hover:bg-teal-700">
-                Se connecter
-              </Button>
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                        <Checkbox id="remember-me" />
+                        <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                            Remember me
+                        </label>
+                    </div>
+                    <div className="text-sm">
+                        <Link href="/forgot-password" className="font-medium text-teal-600 hover:text-teal-500">
+                            Mot de passe oublié?
+                        </Link>
+                    </div>
+                </div>
+
+                <Button type="submit" className="w-full h-12 rounded-70 font-bold bg-teal-600 hover:bg-teal-700">
+                    Se connecter
+                </Button>
             </form>
-          </CardContent>
-          <CardFooter className="text-center">
-            <p className="text-sm text-gray-600">
-              Don't have a Recooty account?{' '}
-              <Link href="/signup" className="font-medium text-teal-600 hover:text-teal-500">
-                S'inscrire maintenant pour 15 jours gratuit
-              </Link>
-            </p>
-          </CardFooter>
-        </Card>
-      </main>
-
-      <footer className="bg-white">
-        <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-          <nav className="flex space-x-4">
-            <Link href="/" className="text-sm text-gray-500 hover:text-gray-900">Home</Link>
-            <Link href="/blog" className="text-sm text-gray-500 hover:text-gray-900">Blog</Link>
-            <Link href="/support" className="text-sm text-gray-500 hover:text-gray-900">Support</Link>
-          </nav>
-          <p className="text-sm text-gray-500">© 2024, made with ❤️ by Recooty</p>
+            
+            <div className="mt-4 text-center">
+                <p className="text-sm text-gray-600">
+                    Pas encore de compte ?{' '}
+                    <button 
+                        onClick={() => {
+                            onClose();
+                            onSignupClick();
+                        }} 
+                        className="font-medium text-teal-600 hover:text-teal-500"
+                    >
+                        S'inscrire maintenant
+                    </button>
+                </p>
+            </div>
         </div>
-      </footer>
-    </div>
-  )
+    );
 }

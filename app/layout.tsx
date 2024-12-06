@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { JobProvider } from '@/contexts/JobContext';
+import { Toaster } from 'react-hot-toast';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,6 +31,7 @@ export default function RootLayout({
         <JobProvider>
           {children}
         </JobProvider>
+        <Toaster position="top-center" />
       </body>
     </html>
   );
